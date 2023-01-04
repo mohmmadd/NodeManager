@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright 2014 Range Networks, Inc.
 #
@@ -27,31 +27,31 @@ addresses = {
 }
 
 def usage(ret=0):
-	print "targets:"
-	print "  openbts"
-	print "  smqueue"
-	print "  sipauthserve"
-	print "command examples:"
-	print "  ./nmcli.py target version                                      (query the component version)"
-	print "  ./nmcli.py target config read                                  (show all configuration values)"
-	print "  ./nmcli.py target config read Log.Level                        (show a specific configuration value)"
-	print "  ./nmcli.py target config update Log.Level INFO                 (update a specific configuration value)"
-	print "  ./nmcli.py openbts monitor                                     (query some live radio data)"
-	print "  ./nmcli.py sipauthserve subscribers read                       (show all subscribers)"
-	print "  ./nmcli.py sipauthserve subscribers create name imsi msisdn    (create a subscriber which uses cache auth)"
-	print "  ./nmcli.py sipauthserve subscribers create name imsi msisdn ki (create a subscriber which uses full auth)"
-	print "  ./nmcli.py sipauthserve subscribers delete imsi the-imsi       (delete a subscriber by imsi)"
-	print "  ./nmcli.py sipauthserve subscribers delete msisdn the-msisdn   (delete a subscriber by imsi)"
-	print "response codes:"
-	print "  200 : action ok with response data"
-	print "  204 : action ok with no response data"
-	print "  204 : action ok with no change"
-	print "  404 : unknown key or action"
-	print "  406 : request is invalid"
-	print "  409 : conflicting value"
-	print "  500 : storing new value failed"
-	print "usage:"
-	print "  ./nmcgi.py target command (action (key (value)))"
+	print ("targets:")
+	print ("  openbts")
+	print ("  smqueue")
+	print ("  sipauthserve")
+	print ("command examples:")
+	print ("  ./nmcli.py target version                                      (query the component version)")
+	print ("  ./nmcli.py target config read                                  (show all configuration values)")
+	print ("  ./nmcli.py target config read Log.Level                        (show a specific configuration value)")
+	print ("  ./nmcli.py target config update Log.Level INFO                 (update a specific configuration value)")
+	print ("  ./nmcli.py openbts monitor                                     (query some live radio data)")
+	print ("  ./nmcli.py sipauthserve subscribers read                       (show all subscribers)")
+	print ("  ./nmcli.py sipauthserve subscribers create name imsi msisdn    (create a subscriber which uses cache auth)")
+	print ("  ./nmcli.py sipauthserve subscribers create name imsi msisdn ki (create a subscriber which uses full auth)")
+	print ("  ./nmcli.py sipauthserve subscribers delete imsi the-imsi       (delete a subscriber by imsi)")
+	print ("  ./nmcli.py sipauthserve subscribers delete msisdn the-msisdn   (delete a subscriber by imsi)")
+	print ("response codes:")
+	print ("  200 : action ok with response data")
+	print ("  204 : action ok with no response data")
+	print ("  204 : action ok with no change")
+	print ("  404 : unknown key or action")
+	print ("  406 : request is invalid")
+	print ("  409 : conflicting value")
+	print ("  500 : storing new value failed")
+	print ("usage:")
+	print ("  ./nmcgi.py target command (action (key (value)))")
 	sys.exit(ret)
 
 if len(sys.argv) < 3:
@@ -95,8 +95,8 @@ if target == "sipauthserve" and command == "subscribers" and action == "create":
 	request = '{"command":"subscribers","action":"create","fields":{"name":"' + name + '","imsi":"' + imsi + '","msisdn":"' + msisdn + '","ki":"' + ki + '"}}'
 if target == "sipauthserve" and command == "subscribers" and action == "delete":
 	request = '{"command":"subscribers","action":"delete","match":{"' + fieldName + '":"' + fieldValue + '"}}'
-print "raw request: " + request
+print ("raw request: " + request)
 socket.send(request)
 
 response = socket.recv()
-print "raw response: " + response
+print ("raw response: " + response)
