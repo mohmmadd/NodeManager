@@ -96,7 +96,7 @@ if target == "sipauthserve" and command == "subscribers" and action == "create":
 if target == "sipauthserve" and command == "subscribers" and action == "delete":
 	request = '{"command":"subscribers","action":"delete","match":{"' + fieldName + '":"' + fieldValue + '"}}'
 print ("raw request: " + request)
-socket.send(request)
+socket.send(str.encode(request))
 
 response = socket.recv()
-print ("raw response: " + response)
+print ("raw response: " + response.decode())
